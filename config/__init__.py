@@ -11,12 +11,13 @@ class Config(dict):
 
     def get(self, key, default_key=None, default_value=None):
         result = self.__getattr__(key)
-
         if result is not None:
             return result
 
         if default_key is not None:
-            return self.__getattr__(default_key)
+            result = self.__getattr__(default_key)
+        if result is not None:
+            return result
 
         if default_value is not None:
             return default_value
